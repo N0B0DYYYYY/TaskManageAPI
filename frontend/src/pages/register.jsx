@@ -1,71 +1,50 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/authprovider';
 import api from '../api/api';
 
-function register() {
+function Register() {
     const [Username, setUsername] = useState('');
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-
     const [error, setError] = useState(null);
-
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
-    e.preventDefault(); // stop page reload on form submit
-
-    try {
-      // send POST request to /api/register/
-      const res = await api.post("/register/", {
-        username: Username,
-        password: Password,
-        email: Email,
-      });
-
-      console.log("User registered:", res.data);
-
-      // after successful register → redirect to login
-      navigate("/login");
-
-    } catch (err) {
-      console.error("Registration failed:", err.response?.data || err.message);
-      setError("Registration failed. Try again.");
-    }
-  };
-
-
+        e.preventDefault();
+        try {
+            await api.post("/register/", {
+                username: Username,
+                password: Password,
+                email: Email,
+            });
+            navigate("/login");
+        } catch (err) {
+            console.error("Registration failed:", err.response?.data || err.message);
+            setError("Registration failed. Try again.");
+        }
+    };
 
     return (
-        <div className="register" style={{ maxWidth: '400px', margin: '50px auto' }}>
+        <div className="form-container auth-form">
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
-                <div>
-                    <label>Email:</label><br />
-                    <input type="email" 
-                    value = {Email}
-                    onChange = {(e) => setEmail(e.target.value)}
-                    required/> 
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required className="form-input" /> 
                 </div>
-                <div>
-                    <label>Username:</label><br />
-                    <input type="text"
-                    value = {Username}
-                    onChange = {(e) => setUsername(e.target.value)}
-                    required/>
+                <div className="form-group">
+                    <label>Username</label>
+                    <input type="text" value={Username} onChange={(e) => setUsername(e.target.value)} required className="form-input" />
                 </div>
-                <div>
-                    <label>Password:</label><br />
-                    <input type="password"
-                    value = {Password}
-                    onChange = {(e) => setPassword(e.target.value)}
-                    required/>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" value={Password} onChange={(e) => setPassword(e.target.value)} required className="form-input" />
                 </div>
-                <button type="submit" style={{ marginTop: '10px' }}>Register</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <button type="submit" className="btn btn-primary" style={{width: '100%'}}>Register</button>
+                {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>{error}</p>}
             </form>
-
         </div>
     );
 }
-export default register;
+
+export default Register;

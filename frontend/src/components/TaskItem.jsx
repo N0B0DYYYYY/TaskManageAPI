@@ -1,29 +1,35 @@
 import React from "react";
 
 function TaskItem({ task, onDelete, onToggle }) {
+  
+  const isOverdue = task.deadline && new Date(task.deadline) < new Date() && !task.completed;
+
+  const formatDeadline = (dateString) => {
+    if (!dateString) return null;
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "space-between",
-      padding: "8px",
-      border: "1px solid #ddd",
-      marginBottom: "5px"
-    }}>
-      <div>
+    <div className="task-item">
+      <div className="task-item-main">
         <input
           type="checkbox"
           checked={task.completed}
           onChange={() => onToggle(task.id)}
         />
-        <span style={{
-          marginLeft: "8px",
-          textDecoration: task.completed ? "line-through" : "none"
-        }}>
-          {task.title}
-        </span>
+        <div>
+          <span className={`task-item-title ${task.completed ? 'completed' : ''}`}>
+            {task.title}
+          </span>
+          {task.deadline && (
+            <div className={`task-item-deadline ${isOverdue ? 'overdue' : ''}`}>
+                Due: {formatDeadline(task.deadline)}
+            </div>
+          )}
+        </div>
       </div>
-
-      <button onClick={() => onDelete(task.id)} style={{ color: "red" }}>
+      <button onClick={() => onDelete(task.id)} className="btn btn-danger">
         Delete
       </button>
     </div>

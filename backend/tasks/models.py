@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 class Task(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True) # Make optional
-    due_date = models.DateField(blank=True, null=True) # Make optional
-    priority = models.IntegerField(default=1) # Add a default value
+    description = models.TextField(blank=True, null=True)
+    deadline = models.DateTimeField(null=True, blank=True)
+    priority = models.IntegerField(default=1)
     completed = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

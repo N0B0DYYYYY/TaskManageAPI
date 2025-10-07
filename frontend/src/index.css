@@ -1,0 +1,230 @@
+/* --- Global Styles & Variables --- */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d;
+  --background-color: #f4f7f6;
+  --card-background: #ffffff;
+  --text-color: #333;
+  --border-color: #dee2e6;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --success-color: #28a745;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --border-radius: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* --- App Container --- */
+.app-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--card-background);
+  box-shadow: var(--box-shadow);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.navbar-brand a {
+  font-weight: bold;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.navbar-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+
+.navbar-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-username {
+  margin-right: 15px;
+  color: var(--secondary-color);
+}
+
+/* --- Buttons --- */
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: var(--danger-hover);
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+}
+.btn-logout:hover {
+    text-decoration: underline;
+}
+
+/* --- Forms & Inputs --- */
+.form-container {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+.auth-form {
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box; /* Important for width calculation */
+}
+
+.task-form-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.task-form-inputs .form-input {
+    flex-grow: 1;
+}
+
+.date-picker-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+}
+
+/* --- Task List --- */
+.tasks-container h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 2rem;
+}
+
+.tasks-container h2.past-due-header {
+    color: var(--danger-color);
+    border-bottom-color: var(--danger-color);
+}
+
+/* --- Task Item --- */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-background);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.task-item-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.task-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.task-item-title {
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+.task-item-title.completed {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+
+.task-item-deadline {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-top: 4px;
+}
+
+.task-item-deadline.overdue {
+    color: var(--danger-color);
+    font-weight: bold;
+}

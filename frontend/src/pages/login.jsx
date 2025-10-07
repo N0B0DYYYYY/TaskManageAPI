@@ -1,15 +1,13 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/authprovider';
 
-export default function login() {
+export default function Login() {
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
     const { login } = useAuth();
     const nav = useNavigate();  
     const [error, setError] = useState(null);
-
-    
     
     const submit = async (e) => {
         e.preventDefault();
@@ -21,15 +19,20 @@ export default function login() {
         }
     };
 
-
     return (
-        <div className ="login">
-            <h2>login</h2>
+        <div className="form-container auth-form">
+            <h2>Login</h2>
             <form onSubmit={submit}>
-                <input value={Username} onChange={e=>setUsername(e.target.value)} placeholder="username"/>
-                <input value={Password} onChange={e=>setPassword(e.target.value)} placeholder="password" type="password"/>
-                <button>login</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <div className="form-group">
+                    <label>Username</label>
+                    <input className="form-input" value={Username} onChange={e=>setUsername(e.target.value)} placeholder="Enter your username"/>
+                </div>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input className="form-input" value={Password} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" type="password"/>
+                </div>
+                <button type="submit" className="btn btn-primary" style={{width: '100%'}}>Login</button>
+                {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>{error}</p>}
             </form>
         </div>
     )
