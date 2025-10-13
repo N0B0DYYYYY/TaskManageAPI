@@ -1,0 +1,17 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+django-cors-headers
+<<<<<<< HEAD
+<<<<<<< HEAD
+gunicorn
+django-filter
+drf-yasg
+dj-database-url
+psycopg2-binary
+whitenoise
+=======
+
+=======
+gunicorn
+>>>>>>> efa7aef (just requirements file)
