@@ -1,5 +1,3 @@
-// src/auth/authprovider.jsx
-    
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import api from '../api/api.js';
 
@@ -12,7 +10,8 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            api.get('/api/me/') // Verify token and get user data
+            // this was the other fix i changed it from /api/me/ to just /me/
+            api.get('/me/') 
                 .then(res => setUser(res.data))
                 .catch(() => {
                     localStorage.removeItem('access_token');
@@ -28,13 +27,12 @@ export const AuthProvider = ({ children }) => {
         const res = await api.post('/token/', { username, password });
         localStorage.setItem('access_token', res.data.access);
         localStorage.setItem('refresh_token', res.data.refresh);
-        const userRes = await api.get('/me/'); // Fetch user data
+        const userRes = await api.get('/me/');
         setUser(userRes.data);
     };
 
     const register = async (username, email, password) => {
         await api.post('/register/', { username, email, password });
-        await login(username, password);
     };
 
     const logout = () => {
