@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // this line checks if we're live on render and uses that url
 // if not it just uses the local one for when you're testing on your computer
-const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';  
+const API_URL = 'https://taskmanageapi-8o3o.onrender.com';
 
 const api = axios.create({
   // here we build the real url and make sure /api/ is always part of it
@@ -56,5 +56,5 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-  
+
 export default api;
