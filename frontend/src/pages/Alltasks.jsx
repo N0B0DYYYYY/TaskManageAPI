@@ -9,7 +9,7 @@ export default function AllTasks() {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const res = await api.get('/api/tasks/');
+                const res = await api.get('/tasks/');
                 setTasks(res.data);
             } catch (err) {
                 console.error("Error fetching tasks:", err);

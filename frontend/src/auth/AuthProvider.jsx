@@ -25,15 +25,15 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (username, password) => {
-        const res = await api.post('/api/token/', { username, password });
+        const res = await api.post('/token/', { username, password });
         localStorage.setItem('access_token', res.data.access);
         localStorage.setItem('refresh_token', res.data.refresh);
-        const userRes = await api.get('/api/me/'); // Fetch user data
+        const userRes = await api.get('/me/'); // Fetch user data
         setUser(userRes.data);
     };
 
     const register = async (username, email, password) => {
-        await api.post('/api/register/', { username, email, password });
+        await api.post('/register/', { username, email, password });
         await login(username, password);
     };
 

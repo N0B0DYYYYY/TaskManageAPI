@@ -12,7 +12,7 @@ function Register() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await api.post("/api/register/", {
+            await api.post("/register/", {
                 username: Username,
                 password: Password,
                 email: Email,

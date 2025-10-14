@@ -9,7 +9,7 @@ function TaskList() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await api.get("/api/tasks/");
+        const res = await api.get("/tasks/");
         setTasks(res.data);
       } catch (err) {
         console.error("Error fetching tasks:", err);
@@ -21,7 +21,7 @@ function TaskList() {
   // Delete task
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/api/tasks/${id}/`);
+      await api.delete(`/tasks/${id}/`);
       setTasks(tasks.filter((t) => t.id !== id));
     } catch (err) {
       console.error("Error deleting task:", err);
@@ -32,7 +32,7 @@ function TaskList() {
   const handleToggle = async (id) => {
     const task = tasks.find((t) => t.id === id);
     try {
-      const res = await api.patch(`/api/tasks/${id}/`, {
+      const res = await api.patch(`/tasks/${id}/`, {
         completed: !task.completed,
       });
       setTasks(tasks.map((t) => (t.id === id ? res.data : t)));
