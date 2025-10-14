@@ -14,7 +14,7 @@ function TaskForm({ onCreate }) {
       if (deadline) {
         taskData.deadline = deadline.toISOString();
       }
-      const res = await api.post("/tasks/", taskData);
+      const res = await api.post("/api/tasks/", taskData);
       if (onCreate) {
         onCreate(res.data);
       }
