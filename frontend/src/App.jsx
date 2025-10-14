@@ -11,7 +11,7 @@ import Navbar from './components/Navbar.jsx';
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/TaskManageAPI">
         <Navbar />
         <main className="app-container">
             <Routes>
