@@ -12,12 +12,12 @@ function Register() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await api.post("/register/", {
+            await api.post("/api/register/", {
                 username: Username,
                 password: Password,
                 email: Email,
             });
-            navigate("/login");
+            navigate("/api/login");
         } catch (err) {
             console.error("Registration failed:", err.response?.data || err.message);
             setError("Registration failed. Try again.");

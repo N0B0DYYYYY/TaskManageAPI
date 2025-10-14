@@ -9,7 +9,7 @@ export default function Tasks() {
 
     const load = async () => {
         try {
-            const res = await api.get('tasks/');
+            const res = await api.get('/api/tasks/');
             setTasks(res.data);
         } catch (err) {
             console.error("Error loading tasks:", err);
@@ -52,7 +52,7 @@ export default function Tasks() {
     
     const handleDelete = async (id) => {
         try {
-            await api.delete(`/tasks/${id}/`);
+            await api.delete(`/api/tasks/${id}/`);
             setTasks(prev => prev.filter(t => t.id !== id));
         } catch (err) {
             console.error("Error deleting task:", err);
@@ -63,7 +63,7 @@ export default function Tasks() {
         const task = tasks.find(t => t.id === id);
         if (task) {
             try {
-                const res = await api.patch(`tasks/${id}/`, { completed: !task.completed });
+                const res = await api.patch(`/api/tasks/${id}/`, { completed: !task.completed });
                 handleUpdate(res.data);
             } catch (err) {
                 console.error("Error toggling task:", err);
